@@ -106,7 +106,9 @@ class Window(object):
                 info.geometry.height + info.extent.top + info.extent.bottom)
 
     def move(self, x, y):
-        self._wrapper_.move_window(self._wid, x, y)
+        area_x, area_y, area_width, area_height = \
+            self._wrapper_.get_current_workarea()
+        self._wrapper_.move_window(self._wid, x + area_x, y + area_y)
 
     def resize(self, width, height):
         info = self.get_info()
